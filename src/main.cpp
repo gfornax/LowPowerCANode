@@ -1,4 +1,14 @@
-
+/*
+ * This is a small example design for an arduino based, low power can node
+ * It uses an MCP2515 to drive a CAN transceiver like a TJA1051.
+ * By using sleep modes, the node will put itself into a low-power
+ * sleep mode when no bus traffic is detected and wake up if messages
+ * are detected.
+ *
+ * Please see https://github.com/gfornax/LowPowerCANode for more
+ * information.
+ * (c) 2021 Andreas Fiessler, fornax@leyanda.de
+*/
 
 #include <Arduino.h>
 #include <avr/sleep.h>
