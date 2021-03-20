@@ -24,20 +24,20 @@ The example contains of two devices which have to be prepared beforehand: A stan
 ## Preparing the Arduino
 I propose using an Arduino mini as it comes WITHOUT the USB-serial converter which would consume power. Any clone will do of course.
 Firstly, we need to remove the LED or its resistor.
-Secondly, we also remove the linear power regulator which usually is a 3 or 5pin SOT23 device. 
+Secondly, we also remove the linear power regulator which usually is a 3 or 5pin SOT23 device.
 I circled these parts in the picture.
 ![modules](/pics/modules.png)
 
 When finished, you can try any low power mode code example, the board should consume around 30-40uA in sleep mode.
 
 Note: You can also use a 8MHz variant at 3.3V, which will save you a bit more power while active. The difference
-while sleeping is neglegible compared to the CAN transceiver. Moreover, you will need a 5V rail for the transceiver anyway.
+while sleeping is negligible compared to the CAN transceiver. Moreover, you will need a 5V rail for the transceiver anyway.
 
 ## Preparing the MCP2515 module
 The module I am using is a standard, inexpensive CAN bus shield that you can easily get. It uses the MCP2515 via SPI.
 To reduce the power consumption, we also remove R1 to disable the LED.
 
-Unfortunately, these modules mostly come with a TJA1050, which does NOT have a nice sleep mode. Remove it.
+Unfortunately, these modules mostly come with a TJA1050, which does NOT have a nice silent mode. Remove it.
 We will replace it with a *TJA1051*. Before soldering it, bend the S pin (#8) up so it will not connect to the PCB.
 Now, you can either directly connect it to the Vcc pin (#3) if listen-only is sufficient or connect it to the S-output of the arduino (see below).
 
@@ -46,9 +46,9 @@ Note: If you want to use a 3.3V circuit, use a TJA1051T/3 that will allow you to
 # Setup
 ![schematic](/pics/schematic.png)
 ## Power supply
-As you can see in the schematic, I used a simple inductive/capacitive filtering circuit. The part values are basically educated guesses, don't take them to seriously.
+As you can see in the schematic, I used a simple inductive/capacitive filtering circuit. The part values are basically educated guesses, don't take them too seriously.
 
-The conversion to 5V is a bit more difficult: Switching buck modules will definitely consume to much standby current, but also most of the commonly used linear regulators like the 7805 are not exactly good in that regard. 
+The conversion to 5V is a bit more difficult: Switching buck modules will definitely consume too much standby current, but also most of the commonly used linear regulators like the 7805 are not exactly good in that regard.
 The best I've found so far is a Holtek HT7550-3 (mind the -3! Others have lower Vin max), which has a reasonably low quiescent current, while still allowing sufficient input voltage.
 
 Keep in mind that you are wasting ~10V in the regulator. With Pmax 0.5W, that means you may not draw more than 50mA. Also, add a heat sink.
