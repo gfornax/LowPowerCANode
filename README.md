@@ -81,3 +81,5 @@ I uses a 16chan PWM module, WS2812B output and a BLE controller. If you are inte
 
 # Other remarks
 If 1mA is still too much, you will most likely need an other approach, like putting the transceiver in a disabled state and waking up periodically.
+Another interesting device worth having a look at is the TJA1145 - unfortunately more difficult to buy and you will need to design your own pcb.
+
