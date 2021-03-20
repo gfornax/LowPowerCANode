@@ -29,11 +29,11 @@
 #define SLEEP_DELAY 100
 
 struct doorstate {
-  char left_open:1;
-  char right_open:1;
-  char opened:1;
-  char closed:1;
-  char override:1;
+  unsigned char left_open:1;
+  unsigned char right_open:1;
+  unsigned char opened:1;
+  unsigned char closed:1;
+  unsigned char override:1;
 };
 
 doorstate frontdoor = {0, 0, 0, 0, 0};
