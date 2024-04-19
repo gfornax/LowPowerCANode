@@ -102,10 +102,10 @@ void go_sleep(void)
   // wake up every 8S to check for any missed interrupt -> leave sleep mode
   // also, if voltage is low keep sleeping whatsoever
   do{
-    cli();
+    // LowPower should handle interrupts properly, otherwise guard this
+    // if block with cli(); + sei();
     if(digitalRead(CAN0_INT)) // last check for messages before going to sleep
       LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
-    sei();
     analogRead(BAT_AIN); // dummy readout after powering ADC
   } while (analogRead(BAT_AIN) <= LOWVOLT_THRESH || digitalRead(CAN0_INT));
 
